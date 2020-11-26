@@ -4,7 +4,7 @@ class Environment {
   static final Environment instance = Environment._();
 
   Environment._() {
-    final env = File('../.env');
+    final env = File('.env');
     final token = env.readAsStringSync().trim();
     _token = token;
   }
