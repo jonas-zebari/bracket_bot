@@ -6,7 +6,7 @@ import 'package:nyxx/nyxx.dart';
 
 import 'commands/commands.dart';
 import 'database/quote.dart';
-import 'env.dart' as env;
+import 'env.dart';
 
 void main() {
   initDatabase();
@@ -21,6 +21,7 @@ void initDatabase() {
 
 void initDiscord() {
   configureNyxxForVM();
+  final env = Environment.instance;
   final client = Nyxx(env.token); // Nyxx => discord.Client
   final commands = Commander(client, env.prefix);
   commands.register('ping', onPing);
