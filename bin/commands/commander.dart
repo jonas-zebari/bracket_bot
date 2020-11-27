@@ -30,8 +30,8 @@ class Commander implements Disposable {
   void register(String name, OnMessageReceived onCommand) {
     assert(!_messageReceivedCommands.containsKey(name));
     final commandCallback = (Message message) {
-      logger.d('User ${message.author} called command ${message.content}');
       onCommand?.call(message);
+      logger.d('User ${message.author} called command ${message.content}');
     };
     _messageReceivedCommands[name.removeAll(_prefix)] = commandCallback;
   }
