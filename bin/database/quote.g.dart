@@ -18,7 +18,7 @@ class QuoteAdapter extends TypeAdapter<Quote> {
     };
     return Quote(
       content: fields[0] as String,
-      timestamp: fields[1] as String,
+      timestamp: fields[1] as DateTime,
       author: fields[2] as String,
       quotedBy: fields[3] as String,
     );

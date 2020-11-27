@@ -31,5 +31,7 @@ void initDiscord() {
   commands.register('logout', onLogout);
   commands.register('role', onRole);
   commands.register('quote', onQuote);
+  commands.register('get-quote', onGetQuote);
+  commands.register('clear-quotes', onClearQuotes);
   commands.listen();
 }

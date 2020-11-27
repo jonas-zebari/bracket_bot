@@ -8,7 +8,7 @@ class Quote {
   final String content;
 
   @HiveField(1)
-  final String timestamp;
+  final DateTime timestamp;
 
   @HiveField(2)
   final String author;
