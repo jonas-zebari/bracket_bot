@@ -10,6 +10,7 @@ dependencies:
   #  path: ^1.7.0
   nyxx: 0.30.0
   hive: any
+  logger: ^0.9.4
 
 dev_dependencies:
   hive_generator: any

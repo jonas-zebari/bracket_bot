@@ -1,17 +1,16 @@
 import 'package:nyxx/nyxx.dart';
 
-import '../env.dart' as env;
+import '../environment.dart';
 
-void onRole(MessageReceivedEvent event) async {
-  final prefixLength = env.Environment.instance.prefix.length;
-  final roleSelected =
-      event.message.content.substring(prefixLength).split(r' ')[1];
-  final role =
-      event.message.guild.roles.findOne((role) => role.name == roleSelected);
+void onRole(Message message) async {
+  final prefixLength = Environment.instance.prefix.length;
+  final roleSelected = message.content.substring(prefixLength).split(r' ')[1];
+  final role = message.guild.roles.values
+      .firstWhere((role) => role.name == roleSelected, orElse: () => null);
   if (role != null) {
-    final member = await event.message.guild.getMember(event.message.author);
+    final member = await message.guild.getMember(message.author);
     await member.addRole(role);
-    await event.message.reply(
+    await message.reply(
       content: 'Your role has been set to `${role.name}`',
     );
   }

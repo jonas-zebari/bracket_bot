@@ -1,11 +1,11 @@
 import 'package:nyxx/nyxx.dart';
 
-void onLogout(MessageReceivedEvent event) {
-  final botOwner = event.message.client.app.owner;
-  final messageOwner = event.message.author;
+void onLogout(Message message) {
+  final botOwner = message.client.app.owner;
+  final messageOwner = message.author;
   if (botOwner.id == messageOwner.id) {
-    event.message.client.close();
+    message.client.close();
   } else {
-    event.message.channel.send(content: 'You are not the bot owner.');
+    message.channel.send(content: 'You are not the bot owner.');
   }
 }

@@ -1,12 +1,15 @@
 import 'dart:io';
 
 import 'package:hive/hive.dart';
+import 'package:logger/logger.dart';
 import 'package:nyxx/Vm.dart';
 import 'package:nyxx/nyxx.dart';
 
 import 'commands/commands.dart';
 import 'database/quote.dart';
-import 'env.dart';
+import 'environment.dart';
+
+final logger = Logger();
 
 void main() {
   initDatabase();

@@ -1,3 +1,3 @@
 import 'package:nyxx/nyxx.dart';
 
-void onQuote(MessageReceivedEvent event) {}
+void onQuote(Message message) {}

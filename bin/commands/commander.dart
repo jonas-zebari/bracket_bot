@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:nyxx/nyxx.dart';
 
-typedef OnMessageReceived = void Function(MessageReceivedEvent);
+import '../main.dart';
+
+typedef OnMessageReceived = void Function(Message message);
 
 class Commander implements Disposable {
   Commander(this._client, this._prefix);
@@ -20,14 +22,18 @@ class Commander implements Disposable {
         .listen((event) {
       final content = event.message.content;
       final command = content.substring(_prefix.length).split(r' ').first;
-      _messageReceivedCommands[command]?.call(event);
+      _messageReceivedCommands[command]?.call(event.message);
     });
     _subscriptions.add(commandsSub);
   }
 
   void register(String name, OnMessageReceived onCommand) {
     assert(!_messageReceivedCommands.containsKey(name));
-    _messageReceivedCommands[name.removeAll(_prefix)] = onCommand;
+    final commandCallback = (Message message) {
+      logger.d('User ${message.author} called command ${message.content}');
+      onCommand?.call(message);
+    };
+    _messageReceivedCommands[name.removeAll(_prefix)] = commandCallback;
   }
 
   @override
